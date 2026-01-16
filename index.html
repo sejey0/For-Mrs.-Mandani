@@ -1,11 +1,659 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monthsary Letter</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Georgia", serif;
+        background: url("images/pm_1768128430947_cmp.jpg") center center repeat;
+        background-size: auto 100%;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        overflow: hidden;
+      }
+
+      .container {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+      }
+
+      .lock-screen {
+        background: url("images/pm_1768128401211_cmp.jpg") center center
+          no-repeat;
+        background-size: cover;
+        border-radius: 20px;
+        padding: 40px 40px 30px 40px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        transition: opacity 0.5s, transform 0.5s;
+        overflow: hidden;
+        min-height: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      .lock-screen.hidden {
+        opacity: 0;
+        transform: scale(0.8);
+        pointer-events: none;
+        position: absolute;
+      }
+
+      .lock-icon {
+        font-size: 60px;
+        margin-bottom: 20px;
+        color: #ec4899;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+
+      .lock-screen h2 {
+        color: #333;
+        margin-bottom: 10px;
+        font-size: 24px;
+      }
+
+      .lock-screen p {
+        color: #666;
+        margin-bottom: 30px;
+        font-size: 14px;
+      }
+
+      .passcode-input {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .passcode-input input {
+        width: 50px;
+        height: 60px;
+        font-size: 24px;
+        text-align: center;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        outline: none;
+        transition: border-color 0.3s, transform 0.2s;
+        background: white;
+      }
+
+      .passcode-input input:focus {
+        border-color: #ec4899;
+        transform: scale(1.05);
+      }
+
+      .unlock-btn {
+        background: rgba(255, 255, 255, 0.85);
+        color: #ec4899;
+        border: none;
+        padding: 12px 40px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .unlock-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 20px rgba(255, 255, 255, 0.6);
+        background: rgba(255, 255, 255, 0.95);
+      }
+
+      .error-msg {
+        color: #e74c3c;
+        margin-top: 10px;
+        font-size: 14px;
+        min-height: 20px;
+      }
+
+      .letter-container {
+        background: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 100%);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        transform: scale(0.8);
+        transition: opacity 0.5s, transform 0.5s;
+        position: absolute;
+        width: 100%;
+        max-height: 80vh;
+        overflow-y: auto;
+        border: 3px solid rgba(236, 72, 153, 0.3);
+      }
+
+      .letter-container.visible {
+        opacity: 1;
+        transform: scale(1);
+        position: relative;
+      }
+
+      .floating-hearts {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .heart {
+        position: absolute;
+        font-size: 20px;
+        animation: float 6s infinite;
+        opacity: 0.6;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0;
+        }
+        50% {
+          opacity: 0.6;
+        }
+        100% {
+          transform: translateY(-100px) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .letter-header {
+        text-align: center;
+        margin-bottom: 30px;
+        border-bottom: 2px solid #ec4899;
+        padding-bottom: 20px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .letter-header h1 {
+        color: #ec4899;
+        font-size: 32px;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        animation: glow 2s ease-in-out infinite;
+      }
+
+      @keyframes glow {
+        0%,
+        100% {
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        50% {
+          text-shadow: 0 0 20px rgba(236, 72, 153, 0.6);
+        }
+      }
+
+      .letter-header .date {
+        color: #666;
+        font-style: italic;
+        font-size: 14px;
+        background: rgba(255, 255, 255, 0.5);
+        padding: 5px 15px;
+        border-radius: 20px;
+        display: inline-block;
+      }
+
+      .letter-content {
+        color: #333;
+        line-height: 1.8;
+        font-size: 16px;
+        position: relative;
+        z-index: 2;
+        background: rgba(255, 255, 255, 0.4);
+        padding: 25px;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+      }
+
+      .letter-content p {
+        margin-bottom: 15px;
+        text-align: justify;
+      }
+
+      .letter-content p:first-child {
+        font-size: 18px;
+        color: #ec4899;
+        font-weight: bold;
+      }
+
+      .quote-box {
+        background: linear-gradient(
+          135deg,
+          rgba(236, 72, 153, 0.2),
+          rgba(139, 92, 246, 0.2)
+        );
+        border-left: 4px solid #ec4899;
+        padding: 15px 20px;
+        margin: 20px 0;
+        border-radius: 10px;
+        font-style: italic;
+        color: #555;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .signature {
+        margin-top: 30px;
+        text-align: right;
+        font-style: italic;
+        color: #8b5cf6;
+        font-size: 18px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hearts {
+        text-align: center;
+        font-size: 24px;
+        margin: 20px 0;
+        color: #e74c3c;
+        animation: heartbeat 1.5s infinite;
+      }
+
+      @keyframes heartbeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        25% {
+          transform: scale(1.1);
+        }
+        50% {
+          transform: scale(1);
+        }
+        75% {
+          transform: scale(1.05);
+        }
+      }
+
+      .music-control {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 100%);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        font-size: 20px;
+        opacity: 0;
+        transition: opacity 0.5s, transform 0.2s;
+        z-index: 1000;
+      }
+
+      .music-control.visible {
+        opacity: 1;
+      }
+
+      .music-control:hover {
+        transform: scale(1.1);
+      }
+
+      .decorative-corner {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        border: 3px solid rgba(236, 72, 153, 0.3);
+        z-index: 0;
+      }
+
+      .corner-tl {
+        top: 10px;
+        left: 10px;
+        border-right: none;
+        border-bottom: none;
+        border-radius: 15px 0 0 0;
+      }
+
+      .corner-br {
+        bottom: 10px;
+        right: 10px;
+        border-left: none;
+        border-top: none;
+        border-radius: 0 0 15px 0;
+      }
+
+      .sparkle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #ec4899;
+        border-radius: 50%;
+        animation: sparkle 2s infinite;
+        pointer-events: none;
+      }
+
+      @keyframes sparkle {
+        0%,
+        100% {
+          opacity: 0;
+          transform: scale(0);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .love-counter {
+        text-align: center;
+        margin: 20px 0;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 15px;
+        font-size: 14px;
+        color: #666;
+      }
+
+      .love-counter span {
+        display: block;
+        font-size: 24px;
+        color: #ec4899;
+        font-weight: bold;
+        margin-top: 5px;
+      }
+
+      .polaroid {
+        background: white;
+        padding: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        margin: 20px auto;
+        max-width: 300px;
+        transform: rotate(-2deg);
+        transition: transform 0.3s;
+      }
+
+      .polaroid:hover {
+        transform: rotate(0deg) scale(1.05);
+      }
+
+      .polaroid-text {
+        text-align: center;
+        color: #666;
+        font-size: 14px;
+        margin-top: 10px;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="lock-screen" id="lockScreen">
+        <div class="passcode-input">
+          <input type="password" maxlength="1" id="digit1" />
+          <input type="password" maxlength="1" id="digit2" />
+          <input type="password" maxlength="1" id="digit3" />
+          <input type="password" maxlength="1" id="digit4" />
+        </div>
+        <button class="unlock-btn" onclick="unlock()">Unlock</button>
+        <div class="error-msg" id="errorMsg"></div>
+      </div>
+
+      <div class="letter-container" id="letterContainer">
+        <div class="floating-hearts" id="floatingHearts"></div>
+        <div class="decorative-corner corner-tl"></div>
+        <div class="decorative-corner corner-br"></div>
+
+        <div class="letter-header">
+          <h1>Happy Monthsary! 💕</h1>
+          <div class="date">To My Dearest Love</div>
+        </div>
+
+        <div class="letter-content">
+          <p>My Beloved,</p>
+
+          <p>
+            As another month passes by, I find myself falling deeper in love
+            with you. Time seems to fly when I'm with you, yet every moment
+            feels precious and eternal. This monthsary is not just a celebration
+            of time, but a celebration of us—of the beautiful journey we're
+            sharing together.
+          </p>
+
+          <div class="quote-box">
+            "In your smile, I see something more beautiful than the stars. In
+            your eyes, I find my home."
+          </div>
+
+          <p>
+            Every day with you brings new reasons to smile, new memories to
+            cherish, and new dreams to share. Your laughter is my favorite
+            melody, your smile my favorite sight, and your happiness my ultimate
+            goal. Thank you for being patient with me, for understanding my
+            flaws, and for loving me despite my imperfections.
+          </p>
+
+          <div class="love-counter">
+            Days of loving you
+            <span id="daysCounter">0</span>
+          </div>
+
+          <p>
+            I want you to know that you are my safe haven, my comfort in storms,
+            and my joy in every season. With you, I've discovered what it truly
+            means to love and be loved. You've taught me that love isn't just
+            about the grand gestures, but about the little moments we share—the
+            inside jokes, the comfortable silences, and the simple acts of care.
+          </p>
+
+          <div class="hearts">❤️ 💖 💕 💗 💝</div>
+
+          <div class="polaroid">
+            <div
+              style="
+                background: linear-gradient(135deg, #fce7f3, #f3e8ff);
+                height: 200px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 60px;
+              "
+            >
+              📸
+            </div>
+            <div class="polaroid-text">Our beautiful memories together</div>
+          </div>
+
+          <p>
+            As we celebrate another month together, I want to make you a
+            promise: I will continue to choose you, to cherish you, and to grow
+            with you. Our journey is just beginning, and I can't wait to create
+            more beautiful memories with you.
+          </p>
+
+          <div class="quote-box">
+            "You are my today and all of my tomorrows."
+          </div>
+
+          <p>
+            Here's to us, to our love, and to many more months of happiness
+            together. Thank you for being mine, and for letting me be yours.
+          </p>
+
+          <div class="signature">
+            Forever yours,<br />
+            With all my love 💕
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="music-control" id="musicControl" onclick="toggleMusic()">
+      🔊
+    </div>
+
+    <audio id="bgMusic" loop>
+      <source
+        src="https://cdn.pixabay.com/audio/2022/05/13/audio_1808fbf07a.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <script>
+      const passcode = "1234";
+      let musicPlaying = true;
+      const startDate = new Date("2025-07-15"); // Change this to your relationship start date
+
+      document.getElementById("digit1").focus();
+
+      const inputs = document.querySelectorAll(".passcode-input input");
+      inputs.forEach((input, index) => {
+        input.addEventListener("input", (e) => {
+          if (e.target.value.length === 1 && index < inputs.length - 1) {
+            inputs[index + 1].focus();
+          }
+        });
+
+        input.addEventListener("keydown", (e) => {
+          if (e.key === "Backspace" && e.target.value === "" && index > 0) {
+            inputs[index - 1].focus();
+          }
+        });
+      });
+
+      function unlock() {
+        const d1 = document.getElementById("digit1").value;
+        const d2 = document.getElementById("digit2").value;
+        const d3 = document.getElementById("digit3").value;
+        const d4 = document.getElementById("digit4").value;
+        const entered = d1 + d2 + d3 + d4;
+
+        if (entered === passcode) {
+          document.getElementById("errorMsg").textContent = "";
+          document.getElementById("lockScreen").classList.add("hidden");
+
+          setTimeout(() => {
+            document.getElementById("letterContainer").classList.add("visible");
+            document.getElementById("musicControl").classList.add("visible");
+
+            const music = document.getElementById("bgMusic");
+            music.play().catch((e) => {
+              console.log("Audio autoplay prevented");
+            });
+
+            createFloatingHearts();
+            createSparkles();
+            updateDaysCounter();
+          }, 300);
+        } else {
+          document.getElementById("errorMsg").textContent =
+            "❌ Incorrect passcode. Try again!";
+          inputs.forEach((input) => {
+            input.value = "";
+            input.style.borderColor = "#e74c3c";
+            setTimeout(() => {
+              input.style.borderColor = "#ddd";
+            }, 500);
+          });
+          inputs[0].focus();
+        }
+      }
+
+      function toggleMusic() {
+        const music = document.getElementById("bgMusic");
+        const control = document.getElementById("musicControl");
+
+        if (musicPlaying) {
+          music.pause();
+          control.textContent = "🔇";
+          musicPlaying = false;
+        } else {
+          music.play();
+          control.textContent = "🔊";
+          musicPlaying = true;
+        }
+      }
+
+      function createFloatingHearts() {
+        const container = document.getElementById("floatingHearts");
+        const hearts = ["💕", "💖", "💗", "💝", "❤️"];
+
+        setInterval(() => {
+          const heart = document.createElement("div");
+          heart.className = "heart";
+          heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+          heart.style.left = Math.random() * 100 + "%";
+          heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+          heart.style.fontSize = Math.random() * 10 + 15 + "px";
+          container.appendChild(heart);
+
+          setTimeout(() => {
+            heart.remove();
+          }, 6000);
+        }, 800);
+      }
+
+      function createSparkles() {
+        const container = document.getElementById("letterContainer");
+
+        setInterval(() => {
+          const sparkle = document.createElement("div");
+          sparkle.className = "sparkle";
+          sparkle.style.left = Math.random() * 100 + "%";
+          sparkle.style.top = Math.random() * 100 + "%";
+          sparkle.style.animationDelay = Math.random() + "s";
+          container.appendChild(sparkle);
+
+          setTimeout(() => {
+            sparkle.remove();
+          }, 2000);
+        }, 300);
+      }
+
+      function updateDaysCounter() {
+        const today = new Date();
+        const diffTime = Math.abs(today - startDate);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        const counter = document.getElementById("daysCounter");
+        let current = 0;
+        const interval = setInterval(() => {
+          current++;
+          counter.textContent = current;
+          if (current >= diffDays) {
+            clearInterval(interval);
+          }
+        }, 20);
+      }
+
+      inputs.forEach((input) => {
+        input.addEventListener("keypress", (e) => {
+          if (e.key === "Enter") {
+            unlock();
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
