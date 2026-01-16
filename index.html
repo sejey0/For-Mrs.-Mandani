@@ -26,7 +26,7 @@
       .container {
         position: relative;
         width: 100%;
-        max-width: 500px;
+        max-width: 700px;
       }
 
       .lock-screen {
@@ -141,7 +141,8 @@
         transition: opacity 0.5s, transform 0.5s;
         position: absolute;
         width: 100%;
-        max-height: 80vh;
+        max-height: 90vh;
+        min-height: 600px;
         overflow-y: auto;
         border: 3px solid rgba(236, 72, 153, 0.3);
       }
@@ -293,31 +294,83 @@
         }
       }
 
-      .music-control {
+      .music-player {
         position: fixed;
         bottom: 20px;
         right: 20px;
         background: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 100%);
+        border-radius: 30px;
+        padding: 12px 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        transition: opacity 0.5s;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .music-player.visible {
+        opacity: 1;
+      }
+
+      .play-pause-btn {
+        background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+        border: none;
         border-radius: 50%;
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        font-size: 20px;
-        opacity: 0;
-        transition: opacity 0.5s, transform 0.2s;
-        z-index: 1000;
+        font-size: 16px;
+        transition: transform 0.2s;
+        color: white;
       }
 
-      .music-control.visible {
-        opacity: 1;
-      }
-
-      .music-control:hover {
+      .play-pause-btn:hover {
         transform: scale(1.1);
+      }
+
+      .volume-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .volume-wrapper span {
+        font-size: 16px;
+      }
+
+      .volume-slider {
+        -webkit-appearance: none;
+        width: 80px;
+        height: 6px;
+        border-radius: 3px;
+        background: linear-gradient(90deg, #ec4899, #8b5cf6);
+        outline: none;
+        cursor: pointer;
+      }
+
+      .volume-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: white;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+      }
+
+      .volume-slider::-moz-range-thumb {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: white;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        border: none;
       }
 
       .decorative-corner {
@@ -509,13 +562,27 @@
       </div>
     </div>
 
-    <div class="music-control" id="musicControl" onclick="toggleMusic()">
-      🔊
+    <div class="music-player" id="musicPlayer">
+      <button class="play-pause-btn" id="playPauseBtn" onclick="toggleMusic()">
+        ⏸️
+      </button>
+      <div class="volume-wrapper">
+        <span>🔊</span>
+        <input
+          type="range"
+          class="volume-slider"
+          id="volumeSlider"
+          min="0"
+          max="100"
+          value="50"
+          oninput="changeVolume(this.value)"
+        />
+      </div>
     </div>
 
     <audio id="bgMusic" loop>
       <source
-        src="https://cdn.pixabay.com/audio/2022/05/13/audio_1808fbf07a.mp3"
+        src="audio/Kahel Na Langit - Maki (Lyrics).mp3"
         type="audio/mpeg"
       />
     </audio>
@@ -555,9 +622,10 @@
 
           setTimeout(() => {
             document.getElementById("letterContainer").classList.add("visible");
-            document.getElementById("musicControl").classList.add("visible");
+            document.getElementById("musicPlayer").classList.add("visible");
 
             const music = document.getElementById("bgMusic");
+            music.volume = 0.5;
             music.play().catch((e) => {
               console.log("Audio autoplay prevented");
             });
@@ -582,17 +650,22 @@
 
       function toggleMusic() {
         const music = document.getElementById("bgMusic");
-        const control = document.getElementById("musicControl");
+        const btn = document.getElementById("playPauseBtn");
 
         if (musicPlaying) {
           music.pause();
-          control.textContent = "🔇";
+          btn.textContent = "▶️";
           musicPlaying = false;
         } else {
           music.play();
-          control.textContent = "🔊";
+          btn.textContent = "⏸️";
           musicPlaying = true;
         }
+      }
+
+      function changeVolume(value) {
+        const music = document.getElementById("bgMusic");
+        music.volume = value / 100;
       }
 
       function createFloatingHearts() {
