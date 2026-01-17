@@ -656,90 +656,235 @@
         }
       }
 
-      /* Zodiac Signs */
+      /* Zodiac Signs - Redesigned */
       .zodiac-container {
         position: absolute;
-        width: 100%;
-        height: 100%;
+        top: 8%;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 60px;
         pointer-events: none;
-        z-index: 1;
+        z-index: 2;
       }
 
-      .zodiac-sign {
-        position: absolute;
-        font-size: 45px;
-        color: rgba(255, 255, 255, 0.7);
-        text-shadow:
-          0 0 20px rgba(255, 255, 255, 0.5),
-          0 0 40px rgba(236, 72, 153, 0.3);
-        z-index: 1;
-      }
-
-      .zodiac-sagittarius {
-        top: 15%;
-        left: 10%;
+      .zodiac-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         animation: zodiacFloat 5s ease-in-out infinite;
       }
 
-      .zodiac-aquarius {
+      .zodiac-card:nth-child(3) {
+        animation-delay: 0.5s;
+      }
+
+      .zodiac-circle {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at 30% 30%,
+          rgba(255, 255, 255, 0.2),
+          transparent 60%
+        );
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        box-shadow:
+          0 0 30px rgba(236, 72, 153, 0.4),
+          0 0 60px rgba(139, 92, 246, 0.2),
+          inset 0 0 30px rgba(255, 255, 255, 0.1);
+        animation: circleGlow 3s ease-in-out infinite;
+      }
+
+      .zodiac-card:nth-child(1) .zodiac-circle {
+        border-color: rgba(236, 72, 153, 0.6);
+        box-shadow:
+          0 0 30px rgba(236, 72, 153, 0.5),
+          0 0 60px rgba(236, 72, 153, 0.3),
+          inset 0 0 30px rgba(236, 72, 153, 0.1);
+      }
+
+      .zodiac-card:nth-child(3) .zodiac-circle {
+        border-color: rgba(139, 92, 246, 0.6);
+        box-shadow:
+          0 0 30px rgba(139, 92, 246, 0.5),
+          0 0 60px rgba(139, 92, 246, 0.3),
+          inset 0 0 30px rgba(139, 92, 246, 0.1);
+      }
+
+      @keyframes circleGlow {
+        0%,
+        100% {
+          box-shadow:
+            0 0 30px rgba(236, 72, 153, 0.4),
+            0 0 60px rgba(139, 92, 246, 0.2),
+            inset 0 0 30px rgba(255, 255, 255, 0.1);
+        }
+        50% {
+          box-shadow:
+            0 0 50px rgba(236, 72, 153, 0.6),
+            0 0 80px rgba(139, 92, 246, 0.4),
+            inset 0 0 40px rgba(255, 255, 255, 0.2);
+        }
+      }
+
+      .zodiac-circle::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 1px dashed rgba(255, 255, 255, 0.3);
+        animation: orbitRotate 20s linear infinite;
+      }
+
+      @keyframes orbitRotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .zodiac-symbol {
+        font-size: 40px;
+        color: white;
+        text-shadow:
+          0 0 20px rgba(255, 255, 255, 0.8),
+          0 0 40px rgba(236, 72, 153, 0.5);
+      }
+
+      .zodiac-label {
+        font-family: "Dancing Script", cursive;
+        font-size: 16px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.9);
+        text-align: center;
+        margin-top: 12px;
+        text-shadow:
+          0 0 10px rgba(255, 255, 255, 0.5),
+          0 2px 4px rgba(0, 0, 0, 0.3);
+        letter-spacing: 1px;
+      }
+
+      /* Center Heart Connection */
+      .zodiac-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .zodiac-heart-center {
+        font-size: 35px;
+        animation: heartPulse 1.5s ease-in-out infinite;
+        filter: drop-shadow(0 0 15px rgba(236, 72, 153, 0.8));
+      }
+
+      @keyframes heartPulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.2);
+        }
+      }
+
+      .zodiac-connection-line {
+        position: absolute;
+        top: 50%;
+        width: 50px;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          rgba(236, 72, 153, 0.6),
+          rgba(255, 255, 255, 0.8),
+          rgba(139, 92, 246, 0.6)
+        );
+      }
+
+      .zodiac-line-left {
+        right: 100%;
+        transform: translateY(-50%);
+      }
+
+      .zodiac-line-right {
+        left: 100%;
+        transform: translateY(-50%);
+      }
+
+      /* Constellation dots around zodiac */
+      .zodiac-constellation {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: white;
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        animation: constellationTwinkle 2s ease-in-out infinite;
+      }
+
+      .zodiac-circle .zodiac-constellation:nth-child(1) {
+        top: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation-delay: 0s;
+      }
+      .zodiac-circle .zodiac-constellation:nth-child(2) {
         top: 15%;
-        right: 10%;
-        animation: zodiacFloat 5s ease-in-out infinite 0.5s;
+        right: 5px;
+        animation-delay: 0.3s;
+      }
+      .zodiac-circle .zodiac-constellation:nth-child(3) {
+        bottom: 15%;
+        right: 10px;
+        animation-delay: 0.6s;
+      }
+      .zodiac-circle .zodiac-constellation:nth-child(4) {
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation-delay: 0.9s;
+      }
+      .zodiac-circle .zodiac-constellation:nth-child(5) {
+        bottom: 15%;
+        left: 10px;
+        animation-delay: 1.2s;
+      }
+      .zodiac-circle .zodiac-constellation:nth-child(6) {
+        top: 15%;
+        left: 5px;
+        animation-delay: 1.5s;
       }
 
-      .zodiac-sign-bottom-left {
-        bottom: 20%;
-        left: 8%;
-        animation: zodiacFloat 5s ease-in-out infinite 1s;
-      }
-
-      .zodiac-sign-bottom-right {
-        bottom: 20%;
-        right: 8%;
-        animation: zodiacFloat 5s ease-in-out infinite 1.5s;
+      @keyframes constellationTwinkle {
+        0%,
+        100% {
+          opacity: 0.4;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.3);
+        }
       }
 
       @keyframes zodiacFloat {
         0%,
         100% {
-          transform: translateY(0) rotate(0deg);
-          opacity: 0.6;
+          transform: translateY(0);
         }
         50% {
-          transform: translateY(-15px) rotate(5deg);
-          opacity: 1;
-        }
-      }
-
-      .zodiac-label {
-        font-family: "Dancing Script", cursive;
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.8);
-        text-align: center;
-        margin-top: 5px;
-        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-      }
-
-      .zodiac-heart {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -120%);
-        font-size: 30px;
-        color: rgba(255, 255, 255, 0.6);
-        animation: heartConnect 2s ease-in-out infinite;
-        z-index: 1;
-      }
-
-      @keyframes heartConnect {
-        0%,
-        100% {
-          transform: translate(-50%, -120%) scale(1);
-          opacity: 0.6;
-        }
-        50% {
-          transform: translate(-50%, -120%) scale(1.2);
-          opacity: 1;
+          transform: translateY(-10px);
         }
       }
 
@@ -798,22 +943,6 @@
           transform: scale(1.3);
           opacity: 1;
         }
-      }
-
-      .zodiac-line {
-        position: absolute;
-        top: 22%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 60%;
-        height: 2px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.4),
-          transparent
-        );
-        z-index: 0;
       }
 
       /* Shooting Stars */
@@ -2231,18 +2360,42 @@
         <div class="intro-ring"></div>
         <div class="intro-ring"></div>
 
-        <!-- Zodiac Signs -->
+        <!-- Zodiac Signs - Redesigned -->
         <div class="zodiac-container">
-          <div class="zodiac-sign zodiac-sagittarius">
-            ♐
+          <!-- Sagittarius -->
+          <div class="zodiac-card">
+            <div class="zodiac-circle">
+              <div class="zodiac-constellation"></div>
+              <div class="zodiac-constellation"></div>
+              <div class="zodiac-constellation"></div>
+              <div class="zodiac-constellation"></div>
+              <div class="zodiac-constellation"></div>
+              <div class="zodiac-constellation"></div>
+              <span class="zodiac-symbol">♐</span>
+            </div>
             <div class="zodiac-label">Sagittarius</div>
           </div>
-          <div class="zodiac-sign zodiac-aquarius">
-            ♒
+
+          <!-- Center Heart -->
+          <div class="zodiac-center">
+            <div class="zodiac-connection-line zodiac-line-left"></div>
+            <div class="zodiac-heart-center">💕</div>
+            <div class="zodiac-connection-line zodiac-line-right"></div>
+          </div>
+
+          <!-- Aquarius -->
+          <div class="zodiac-card">
+            <div class="zodiac-circle">
+              <div class="zodiac-constellation"></div>
+              <div class="zodiac-constellation"></div>
+              <div class="zodiac-constellation"></div>
+              <div class="zodiac-constellation"></div>
+              <div class="zodiac-constellation"></div>
+              <div class="zodiac-constellation"></div>
+              <span class="zodiac-symbol">♒</span>
+            </div>
             <div class="zodiac-label">Aquarius</div>
           </div>
-          <div class="zodiac-line"></div>
-          <div class="zodiac-heart">💕</div>
         </div>
 
         <!-- Names Display -->
