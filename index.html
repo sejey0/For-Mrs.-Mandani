@@ -119,6 +119,363 @@
         justify-content: center;
       }
 
+      /* Floating Particles for Intro */
+      .intro-particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .particle {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 50%;
+        animation: floatParticle 6s ease-in-out infinite;
+      }
+
+      .particle:nth-child(1) {
+        left: 10%;
+        top: 20%;
+        animation-delay: 0s;
+      }
+      .particle:nth-child(2) {
+        left: 20%;
+        top: 60%;
+        animation-delay: 1s;
+      }
+      .particle:nth-child(3) {
+        left: 30%;
+        top: 40%;
+        animation-delay: 2s;
+      }
+      .particle:nth-child(4) {
+        left: 50%;
+        top: 10%;
+        animation-delay: 0.5s;
+      }
+      .particle:nth-child(5) {
+        left: 60%;
+        top: 70%;
+        animation-delay: 1.5s;
+      }
+      .particle:nth-child(6) {
+        left: 70%;
+        top: 30%;
+        animation-delay: 2.5s;
+      }
+      .particle:nth-child(7) {
+        left: 80%;
+        top: 50%;
+        animation-delay: 0.8s;
+      }
+      .particle:nth-child(8) {
+        left: 90%;
+        top: 20%;
+        animation-delay: 1.8s;
+      }
+      .particle:nth-child(9) {
+        left: 15%;
+        top: 80%;
+        animation-delay: 3s;
+      }
+      .particle:nth-child(10) {
+        left: 85%;
+        top: 75%;
+        animation-delay: 2.2s;
+      }
+
+      @keyframes floatParticle {
+        0%,
+        100% {
+          transform: translateY(0) scale(1);
+          opacity: 0.6;
+        }
+        50% {
+          transform: translateY(-30px) scale(1.5);
+          opacity: 1;
+        }
+      }
+
+      /* Romantic Title for Intro */
+      .intro-title {
+        font-family: "Dancing Script", cursive;
+        font-size: 42px;
+        color: #ffffff;
+        text-shadow:
+          2px 2px 15px rgba(0, 0, 0, 0.5),
+          0 0 30px rgba(236, 72, 153, 0.3);
+        margin-bottom: 10px;
+        animation: titleFloat 4s ease-in-out infinite;
+        position: relative;
+        z-index: 2;
+      }
+
+      @keyframes titleFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+
+      .intro-subtitle {
+        font-family: "Lora", serif;
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.85);
+        font-style: italic;
+        text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
+        margin-bottom: 30px;
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Heart Beat Icon */
+      .intro-heart {
+        font-size: 60px;
+        margin-bottom: 20px;
+        animation: heartBeat 1.5s ease-in-out infinite;
+        filter: drop-shadow(0 5px 20px rgba(236, 72, 153, 0.5));
+        position: relative;
+        z-index: 2;
+      }
+
+      @keyframes heartBeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        14% {
+          transform: scale(1.2);
+        }
+        28% {
+          transform: scale(1);
+        }
+        42% {
+          transform: scale(1.2);
+        }
+        70% {
+          transform: scale(1);
+        }
+      }
+
+      /* Glowing Ring */
+      .intro-ring {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 250px;
+        height: 250px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        animation: ringPulse 3s ease-in-out infinite;
+        z-index: 0;
+      }
+
+      .intro-ring:nth-child(2) {
+        width: 300px;
+        height: 300px;
+        animation-delay: 0.5s;
+      }
+
+      .intro-ring:nth-child(3) {
+        width: 350px;
+        height: 350px;
+        animation-delay: 1s;
+      }
+
+      @keyframes ringPulse {
+        0%,
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 0.3;
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.1);
+          opacity: 0.6;
+        }
+      }
+
+      /* Sparkle Stars */
+      .intro-star {
+        position: absolute;
+        font-size: 20px;
+        animation: starTwinkle 2s ease-in-out infinite;
+        z-index: 1;
+      }
+
+      .intro-star:nth-child(1) {
+        top: 15%;
+        left: 15%;
+        animation-delay: 0s;
+      }
+      .intro-star:nth-child(2) {
+        top: 10%;
+        right: 20%;
+        animation-delay: 0.3s;
+      }
+      .intro-star:nth-child(3) {
+        bottom: 25%;
+        left: 10%;
+        animation-delay: 0.6s;
+      }
+      .intro-star:nth-child(4) {
+        bottom: 20%;
+        right: 15%;
+        animation-delay: 0.9s;
+      }
+      .intro-star:nth-child(5) {
+        top: 35%;
+        right: 10%;
+        animation-delay: 1.2s;
+      }
+
+      @keyframes starTwinkle {
+        0%,
+        100% {
+          opacity: 0.4;
+          transform: scale(1) rotate(0deg);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.3) rotate(180deg);
+        }
+      }
+
+      /* Enter Date Text */
+      .intro-hint {
+        font-family: "Lora", serif;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.7);
+        margin-top: 15px;
+        letter-spacing: 1px;
+        animation: hintFade 2s ease-in-out infinite;
+        position: relative;
+        z-index: 2;
+      }
+
+      @keyframes hintFade {
+        0%,
+        100% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      /* Zodiac Signs */
+      .zodiac-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .zodiac-sign {
+        position: absolute;
+        font-size: 45px;
+        color: rgba(255, 255, 255, 0.7);
+        text-shadow:
+          0 0 20px rgba(255, 255, 255, 0.5),
+          0 0 40px rgba(236, 72, 153, 0.3);
+        z-index: 1;
+      }
+
+      .zodiac-sagittarius {
+        top: 15%;
+        left: 10%;
+        animation: zodiacFloat 5s ease-in-out infinite;
+      }
+
+      .zodiac-aquarius {
+        top: 15%;
+        right: 10%;
+        animation: zodiacFloat 5s ease-in-out infinite 0.5s;
+      }
+
+      .zodiac-sign-bottom-left {
+        bottom: 20%;
+        left: 8%;
+        animation: zodiacFloat 5s ease-in-out infinite 1s;
+      }
+
+      .zodiac-sign-bottom-right {
+        bottom: 20%;
+        right: 8%;
+        animation: zodiacFloat 5s ease-in-out infinite 1.5s;
+      }
+
+      @keyframes zodiacFloat {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 0.6;
+        }
+        50% {
+          transform: translateY(-15px) rotate(5deg);
+          opacity: 1;
+        }
+      }
+
+      .zodiac-label {
+        font-family: "Dancing Script", cursive;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.8);
+        text-align: center;
+        margin-top: 5px;
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+      }
+
+      .zodiac-heart {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -120%);
+        font-size: 30px;
+        color: rgba(255, 255, 255, 0.6);
+        animation: heartConnect 2s ease-in-out infinite;
+        z-index: 1;
+      }
+
+      @keyframes heartConnect {
+        0%,
+        100% {
+          transform: translate(-50%, -120%) scale(1);
+          opacity: 0.6;
+        }
+        50% {
+          transform: translate(-50%, -120%) scale(1.2);
+          opacity: 1;
+        }
+      }
+
+      .zodiac-line {
+        position: absolute;
+        top: 22%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        z-index: 0;
+      }
+
       .lock-title {
         font-family: "Dancing Script", cursive;
         color: #ffffff;
@@ -1176,7 +1533,42 @@
   <body>
     <div class="container">
       <div class="lock-screen" id="lockScreen">
+        <!-- Floating Particles -->
+        <div class="intro-particles">
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+        </div>
+
+        <!-- Glowing Rings -->
+        <div class="intro-ring"></div>
+        <div class="intro-ring"></div>
+        <div class="intro-ring"></div>
+
+        <!-- Zodiac Signs -->
+        <div class="zodiac-container">
+          <div class="zodiac-sign zodiac-sagittarius">
+            ♐
+            <div class="zodiac-label">Sagittarius</div>
+          </div>
+          <div class="zodiac-sign zodiac-aquarius">
+            ♒
+            <div class="zodiac-label">Aquarius</div>
+          </div>
+          <div class="zodiac-line"></div>
+          <div class="zodiac-heart">💕</div>
+        </div>
+
         <div class="lock-content">
+          <div class="intro-title">For My Love</div>
+          <div class="intro-subtitle">A special message awaits you...</div>
           <div class="passcode-input">
             <input type="password" maxlength="1" id="digit1" placeholder="•" />
             <input type="password" maxlength="1" id="digit2" placeholder="•" />
@@ -1184,6 +1576,7 @@
             <input type="password" maxlength="1" id="digit4" placeholder="•" />
           </div>
           <button class="unlock-btn" onclick="unlock()">Unlock</button>
+          <div class="intro-hint">🔒 Enter our special date</div>
           <div class="error-msg" id="errorMsg"></div>
         </div>
       </div>
