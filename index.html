@@ -27,6 +27,289 @@
         overflow: hidden;
       }
 
+      /* Falling Stars/Snow Effect for Body */
+      .falling-stars-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .falling-star-body {
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        background: white;
+        border-radius: 50%;
+        box-shadow:
+          0 0 6px 2px rgba(255, 255, 255, 0.8),
+          0 0 12px 4px rgba(255, 255, 255, 0.4);
+        animation: fallingStar linear infinite;
+      }
+
+      .falling-star-body::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1px;
+        height: 20px;
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.8),
+          transparent
+        );
+      }
+
+      @keyframes fallingStar {
+        0% {
+          transform: translateY(-10px) translateX(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) translateX(30px);
+          opacity: 0;
+        }
+      }
+
+      /* Different star sizes and speeds */
+      .falling-star-body:nth-child(1) {
+        left: 5%;
+        animation-duration: 4s;
+        animation-delay: 0s;
+        width: 2px;
+        height: 2px;
+      }
+      .falling-star-body:nth-child(2) {
+        left: 15%;
+        animation-duration: 5s;
+        animation-delay: 1s;
+        width: 3px;
+        height: 3px;
+      }
+      .falling-star-body:nth-child(3) {
+        left: 25%;
+        animation-duration: 4.5s;
+        animation-delay: 2s;
+        width: 2px;
+        height: 2px;
+      }
+      .falling-star-body:nth-child(4) {
+        left: 35%;
+        animation-duration: 6s;
+        animation-delay: 0.5s;
+        width: 4px;
+        height: 4px;
+      }
+      .falling-star-body:nth-child(5) {
+        left: 45%;
+        animation-duration: 4s;
+        animation-delay: 3s;
+        width: 2px;
+        height: 2px;
+      }
+      .falling-star-body:nth-child(6) {
+        left: 55%;
+        animation-duration: 5.5s;
+        animation-delay: 1.5s;
+        width: 3px;
+        height: 3px;
+      }
+      .falling-star-body:nth-child(7) {
+        left: 65%;
+        animation-duration: 4.2s;
+        animation-delay: 2.5s;
+        width: 2px;
+        height: 2px;
+      }
+      .falling-star-body:nth-child(8) {
+        left: 75%;
+        animation-duration: 5s;
+        animation-delay: 0.8s;
+        width: 3px;
+        height: 3px;
+      }
+      .falling-star-body:nth-child(9) {
+        left: 85%;
+        animation-duration: 4.8s;
+        animation-delay: 3.5s;
+        width: 2px;
+        height: 2px;
+      }
+      .falling-star-body:nth-child(10) {
+        left: 95%;
+        animation-duration: 5.2s;
+        animation-delay: 1.2s;
+        width: 4px;
+        height: 4px;
+      }
+      .falling-star-body:nth-child(11) {
+        left: 10%;
+        animation-duration: 6s;
+        animation-delay: 2.2s;
+        width: 2px;
+        height: 2px;
+      }
+      .falling-star-body:nth-child(12) {
+        left: 20%;
+        animation-duration: 4.3s;
+        animation-delay: 4s;
+        width: 3px;
+        height: 3px;
+      }
+      .falling-star-body:nth-child(13) {
+        left: 30%;
+        animation-duration: 5.8s;
+        animation-delay: 0.3s;
+        width: 2px;
+        height: 2px;
+      }
+      .falling-star-body:nth-child(14) {
+        left: 40%;
+        animation-duration: 4.6s;
+        animation-delay: 2.8s;
+        width: 3px;
+        height: 3px;
+      }
+      .falling-star-body:nth-child(15) {
+        left: 50%;
+        animation-duration: 5.4s;
+        animation-delay: 1.8s;
+        width: 4px;
+        height: 4px;
+      }
+      .falling-star-body:nth-child(16) {
+        left: 60%;
+        animation-duration: 4.1s;
+        animation-delay: 3.2s;
+        width: 2px;
+        height: 2px;
+      }
+      .falling-star-body:nth-child(17) {
+        left: 70%;
+        animation-duration: 5.7s;
+        animation-delay: 0.6s;
+        width: 3px;
+        height: 3px;
+      }
+      .falling-star-body:nth-child(18) {
+        left: 80%;
+        animation-duration: 4.4s;
+        animation-delay: 2.4s;
+        width: 2px;
+        height: 2px;
+      }
+      .falling-star-body:nth-child(19) {
+        left: 90%;
+        animation-duration: 5.1s;
+        animation-delay: 4.2s;
+        width: 3px;
+        height: 3px;
+      }
+      .falling-star-body:nth-child(20) {
+        left: 8%;
+        animation-duration: 4.9s;
+        animation-delay: 1.4s;
+        width: 4px;
+        height: 4px;
+      }
+
+      /* Sparkle Snow Particles */
+      .snow-particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 1) 0%,
+          rgba(255, 255, 255, 0) 70%
+        );
+        border-radius: 50%;
+        animation: snowFall linear infinite;
+      }
+
+      @keyframes snowFall {
+        0% {
+          transform: translateY(-10px) translateX(0) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.8;
+        }
+        50% {
+          transform: translateY(50vh) translateX(20px) rotate(180deg);
+        }
+        90% {
+          opacity: 0.6;
+        }
+        100% {
+          transform: translateY(100vh) translateX(-10px) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .snow-particle:nth-child(21) {
+        left: 3%;
+        animation-duration: 8s;
+        animation-delay: 0s;
+      }
+      .snow-particle:nth-child(22) {
+        left: 12%;
+        animation-duration: 10s;
+        animation-delay: 1s;
+      }
+      .snow-particle:nth-child(23) {
+        left: 22%;
+        animation-duration: 9s;
+        animation-delay: 2s;
+      }
+      .snow-particle:nth-child(24) {
+        left: 32%;
+        animation-duration: 11s;
+        animation-delay: 0.5s;
+      }
+      .snow-particle:nth-child(25) {
+        left: 42%;
+        animation-duration: 8.5s;
+        animation-delay: 3s;
+      }
+      .snow-particle:nth-child(26) {
+        left: 52%;
+        animation-duration: 9.5s;
+        animation-delay: 1.5s;
+      }
+      .snow-particle:nth-child(27) {
+        left: 62%;
+        animation-duration: 10.5s;
+        animation-delay: 2.5s;
+      }
+      .snow-particle:nth-child(28) {
+        left: 72%;
+        animation-duration: 8s;
+        animation-delay: 0.8s;
+      }
+      .snow-particle:nth-child(29) {
+        left: 82%;
+        animation-duration: 9s;
+        animation-delay: 3.5s;
+      }
+      .snow-particle:nth-child(30) {
+        left: 92%;
+        animation-duration: 10s;
+        animation-delay: 1.2s;
+      }
+
       .container {
         position: relative;
         width: 100%;
@@ -1922,6 +2205,40 @@
         </div>
       </div>
       <div class="success-animation" id="successAnimation"></div>
+
+      <!-- Falling Stars for Body Background -->
+      <div class="falling-stars-container" id="fallingStarsContainer">
+        <div class="falling-star-body"></div>
+        <div class="falling-star-body"></div>
+        <div class="falling-star-body"></div>
+        <div class="falling-star-body"></div>
+        <div class="falling-star-body"></div>
+        <div class="falling-star-body"></div>
+        <div class="falling-star-body"></div>
+        <div class="falling-star-body"></div>
+        <div class="falling-star-body"></div>
+        <div class="falling-star-body"></div>
+        <div class="falling-star-body"></div>
+        <div class="falling-star-body"></div>
+        <div class="falling-star-body"></div>
+        <div class="falling-star-body"></div>
+        <div class="falling-star-body"></div>
+        <div class="falling-star-body"></div>
+        <div class="falling-star-body"></div>
+        <div class="falling-star-body"></div>
+        <div class="falling-star-body"></div>
+        <div class="falling-star-body"></div>
+        <div class="snow-particle"></div>
+        <div class="snow-particle"></div>
+        <div class="snow-particle"></div>
+        <div class="snow-particle"></div>
+        <div class="snow-particle"></div>
+        <div class="snow-particle"></div>
+        <div class="snow-particle"></div>
+        <div class="snow-particle"></div>
+        <div class="snow-particle"></div>
+        <div class="snow-particle"></div>
+      </div>
 
       <div class="letter-container" id="letterContainer">
         <div class="floating-hearts" id="floatingHearts"></div>
