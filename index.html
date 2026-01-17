@@ -1574,6 +1574,8 @@
             <input type="password" maxlength="1" id="digit2" placeholder="•" />
             <input type="password" maxlength="1" id="digit3" placeholder="•" />
             <input type="password" maxlength="1" id="digit4" placeholder="•" />
+            <input type="password" maxlength="1" id="digit5" placeholder="•" />
+            <input type="password" maxlength="1" id="digit6" placeholder="•" />
           </div>
           <button class="unlock-btn" onclick="unlock()">Unlock</button>
           <div class="intro-hint">🔒 Enter our special date</div>
@@ -1743,7 +1745,7 @@
     </audio>
 
     <script>
-      const passcode = "1234";
+      const passcode = "071525";
       let musicPlaying = true;
       const startDate = new Date("2025-07-15"); // Change this to your relationship start date
 
@@ -1798,7 +1800,9 @@
         const d2 = document.getElementById("digit2").value;
         const d3 = document.getElementById("digit3").value;
         const d4 = document.getElementById("digit4").value;
-        const entered = d1 + d2 + d3 + d4;
+        const d5 = document.getElementById("digit5").value;
+        const d6 = document.getElementById("digit6").value;
+        const entered = d1 + d2 + d3 + d4 + d5 + d6;
 
         if (entered === passcode) {
           document.getElementById("errorMsg").textContent = "";
