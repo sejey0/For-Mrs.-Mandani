@@ -875,10 +875,9 @@
         position: fixed;
         bottom: 20px;
         right: 20px;
-        background: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 100%);
+        background: transparent;
         border-radius: 30px;
         padding: 12px 20px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         opacity: 0;
         transition: opacity 0.5s;
         z-index: 1000;
@@ -892,8 +891,8 @@
       }
 
       .play-pause-btn {
-        background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
-        border: none;
+        background: transparent;
+        border: 2px solid white;
         border-radius: 50%;
         width: 40px;
         height: 40px;
@@ -918,6 +917,7 @@
 
       .volume-wrapper span {
         font-size: 16px;
+        color: white;
       }
 
       .volume-slider {
@@ -925,7 +925,7 @@
         width: 80px;
         height: 6px;
         border-radius: 3px;
-        background: linear-gradient(90deg, #ec4899, #8b5cf6);
+        background: rgba(255, 255, 255, 0.5);
         outline: none;
         cursor: pointer;
       }
