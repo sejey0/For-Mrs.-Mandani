@@ -547,6 +547,12 @@
         padding: 20px 10px;
         z-index: 5;
         pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.8s ease;
+      }
+
+      .polaroid-side.visible {
+        opacity: 1;
       }
 
       .polaroid-left {
@@ -1412,6 +1418,9 @@
           setTimeout(() => {
             document.getElementById("letterContainer").classList.add("visible");
             document.getElementById("musicPlayer").classList.add("visible");
+            document
+              .querySelectorAll(".polaroid-side")
+              .forEach((el) => el.classList.add("visible"));
 
             const music = document.getElementById("bgMusic");
             music.volume = 0.5;
