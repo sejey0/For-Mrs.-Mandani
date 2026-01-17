@@ -1316,10 +1316,6 @@
         <img src="images/pm_1768128424188_cmp.jpg" alt="Memory 12" />
         <div class="polaroid-caption">💕</div>
       </div>
-      <div class="polaroid-item">
-        <img src="images/pm_1768128430947_cmp.jpg" alt="Memory 13" />
-        <div class="polaroid-caption">💕</div>
-      </div>
     </div>
 
     <div class="music-player" id="musicPlayer">
@@ -1465,22 +1461,86 @@
 
       function createFloatingHearts() {
         const container = document.getElementById("floatingHearts");
-        const hearts = ["💕", "💖", "💗", "💝", "❤️", "✨", "🌸", "🦋"];
+        const images = [
+          "images/pm_1768128388305_cmp.jpg",
+          "images/pm_1768128393881_cmp.jpg",
+          "images/pm_1768128394342_cmp.jpg",
+          "images/pm_1768128397417_cmp.jpg",
+          "images/pm_1768128397803_cmp.jpg",
+          "images/pm_1768128399534_cmp.jpg",
+          "images/pm_1768128399819_cmp.jpg",
+          "images/pm_1768128401211_cmp.jpg",
+          "images/pm_1768128416038_cmp.jpg",
+          "images/pm_1768128416437_cmp.jpg",
+          "images/pm_1768128423235_cmp.jpg",
+          "images/pm_1768128424188_cmp.jpg",
+        ];
 
         setInterval(() => {
           const heart = document.createElement("div");
           heart.className = "heart";
-          heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+          const size = Math.random() * 30 + 45;
+
+          // Use SVG with image fill for true heart shape
+          const svg = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "svg",
+          );
+          svg.setAttribute("viewBox", "0 0 32 29.6");
+          svg.setAttribute("width", size);
+          svg.setAttribute("height", size);
+          svg.style.overflow = "visible";
+          svg.style.filter = "drop-shadow(0 4px 8px rgba(0,0,0,0.4))";
+
+          const defs = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "defs",
+          );
+          const pattern = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "pattern",
+          );
+          pattern.setAttribute("id", "img" + Date.now() + Math.random());
+          pattern.setAttribute("patternUnits", "objectBoundingBox");
+          pattern.setAttribute("width", "1");
+          pattern.setAttribute("height", "1");
+
+          const image = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "image",
+          );
+          image.setAttribute(
+            "href",
+            images[Math.floor(Math.random() * images.length)],
+          );
+          image.setAttribute("width", "32");
+          image.setAttribute("height", "32");
+          image.setAttribute("preserveAspectRatio", "xMidYMid slice");
+
+          pattern.appendChild(image);
+          defs.appendChild(pattern);
+          svg.appendChild(defs);
+
+          const path = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "path",
+          );
+          path.setAttribute(
+            "d",
+            "M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z",
+          );
+          path.setAttribute("fill", "url(#" + pattern.getAttribute("id") + ")");
+          svg.appendChild(path);
+
+          heart.appendChild(svg);
           heart.style.left = Math.random() * 100 + "%";
           heart.style.animationDuration = Math.random() * 4 + 5 + "s";
-          heart.style.fontSize = Math.random() * 12 + 14 + "px";
-          heart.style.filter = `hue-rotate(${Math.random() * 30}deg)`;
           container.appendChild(heart);
 
           setTimeout(() => {
             heart.remove();
           }, 9000);
-        }, 600);
+        }, 800);
       }
 
       function createSparkles() {
