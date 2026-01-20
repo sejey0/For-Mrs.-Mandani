@@ -891,7 +891,7 @@
       /* Names Display */
       .names-display {
         position: absolute;
-        top: 35%;
+        top: 22%;
         left: 50%;
         transform: translateX(-50%);
         display: flex;
@@ -1964,6 +1964,7 @@
         display: flex;
         gap: 12px;
         justify-content: center;
+        margin-top: 80px;
         margin-bottom: 25px;
       }
 
@@ -3051,9 +3052,9 @@
 
         <!-- Names Display -->
         <div class="names-display">
-          <span class="name">Cjay</span>
-          <span class="names-connector">∞</span>
           <span class="name">Ayen</span>
+          <span class="names-connector">∞</span>
+          <span class="name">Cjay</span>
         </div>
 
         <div class="lock-content">
@@ -3086,14 +3087,9 @@
             onclick="unlock()"
             onmousedown="createRipple(event)"
           >
-            <span id="buttonQuote">✨ Unlock Our Love ✨</span>
+            <span id="buttonQuote">Unlock</span>
           </button>
 
-          <div class="intro-hint-wrapper">
-            <div class="intro-hint" id="typewriterHint">
-              🔒 Enter our special date
-            </div>
-          </div>
           <div class="error-msg" id="errorMsg"></div>
 
           <!-- Romantic Quote Banner -->
@@ -3759,21 +3755,11 @@
       });
 
       // Rotating Romantic Quotes for Button
-      const buttonQuotes = [
-        "✨ Unlock Our Love ✨",
-        "💕 Open Your Heart 💕",
-        "💖 Enter Love's Code 💖",
-        "💗 Reveal Our Story 💗",
-        "💝 Discover Romance 💝",
-        "❤️ Access Our Journey ❤️",
-        "🌸 Unlock Forever 🌸",
-        "💓 Enter Our Secret 💓",
-      ];
+      const buttonQuotes = ["Unlock"];
 
       let currentQuoteIndex = 0;
       function rotateQuotes() {
         const hintQuoteElement = document.getElementById("romanticQuoteHint");
-        const buttonQuoteElement = document.getElementById("buttonQuote");
 
         // Rotate hint quote
         if (hintQuoteElement) {
@@ -3782,18 +3768,6 @@
             currentQuoteIndex = (currentQuoteIndex + 1) % romanticQuotes.length;
             hintQuoteElement.textContent = romanticQuotes[currentQuoteIndex];
             hintQuoteElement.style.opacity = "1";
-          }, 500);
-        }
-
-        // Rotate button quote
-        if (buttonQuoteElement) {
-          buttonQuoteElement.style.transition = "opacity 0.5s ease";
-          buttonQuoteElement.style.opacity = "0";
-
-          setTimeout(() => {
-            const buttonIndex = currentQuoteIndex % buttonQuotes.length;
-            buttonQuoteElement.textContent = buttonQuotes[buttonIndex];
-            buttonQuoteElement.style.opacity = "1";
           }, 500);
         }
       }
