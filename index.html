@@ -1439,6 +1439,7 @@
         display: flex;
         gap: 8px;
         z-index: 3;
+        justify-content: center;
       }
 
       .love-meter-heart {
@@ -1489,6 +1490,7 @@
         margin-bottom: 15px;
         animation: lockWiggle 3s ease-in-out infinite;
         filter: drop-shadow(0 5px 20px rgba(255, 255, 255, 0.3));
+        text-align: center;
       }
 
       .keyhole-glow {
@@ -1679,7 +1681,7 @@
       /* Romantic Quote Banner */
       .romantic-quote-banner {
         position: absolute;
-        top: 48%;
+        top: 60%;
         left: 50%;
         transform: translateX(-50%);
         font-family: "Lora", serif;
@@ -1691,6 +1693,19 @@
         animation: quoteFade 8s ease-in-out infinite;
         z-index: 2;
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Romantic Quote Banner in Hint Area */
+      .romantic-quote-banner-hint {
+        font-family: "Lora", serif;
+        font-style: italic;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.65);
+        text-align: center;
+        margin: 35px 0 0 0;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        transition: opacity 0.5s ease;
+        z-index: 2;
       }
 
       @keyframes quoteFade {
@@ -1996,6 +2011,13 @@
         position: relative;
         overflow: hidden;
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        display: block;
+        margin: 0 auto;
+      }
+
+      .unlock-btn span {
+        display: inline-block;
+        transition: opacity 0.5s ease;
       }
 
       .unlock-btn::before {
@@ -2929,11 +2951,6 @@
         <!-- Spinning Hearts Ring -->
         <div class="spinning-hearts-ring" id="spinningRing"></div>
 
-        <!-- Romantic Quote Banner -->
-        <div class="romantic-quote-banner" id="romanticQuote">
-          "Every love story is beautiful, but ours is my favorite." 💕
-        </div>
-
         <!-- Sparkle Trail Container -->
         <div class="sparkle-trail" id="sparkleTrail"></div>
 
@@ -3069,15 +3086,20 @@
             onclick="unlock()"
             onmousedown="createRipple(event)"
           >
-            ✨ Unlock Our Love ✨
+            <span id="buttonQuote">✨ Unlock Our Love ✨</span>
           </button>
+
           <div class="intro-hint-wrapper">
             <div class="intro-hint" id="typewriterHint">
               🔒 Enter our special date
             </div>
-            <span class="typewriter-cursor"></span>
           </div>
           <div class="error-msg" id="errorMsg"></div>
+
+          <!-- Romantic Quote Banner -->
+          <div class="romantic-quote-banner-hint" id="romanticQuoteHint">
+            "Every love story is beautiful, but ours is my favorite." 💕
+          </div>
         </div>
       </div>
       <div class="success-animation" id="successAnimation"></div>
@@ -3736,6 +3758,46 @@
         input.addEventListener("input", updateLoveMeter);
       });
 
+      // Rotating Romantic Quotes for Button
+      const buttonQuotes = [
+        "✨ Unlock Our Love ✨",
+        "💕 Open Your Heart 💕",
+        "💖 Enter Love's Code 💖",
+        "💗 Reveal Our Story 💗",
+        "💝 Discover Romance 💝",
+        "❤️ Access Our Journey ❤️",
+        "🌸 Unlock Forever 🌸",
+        "💓 Enter Our Secret 💓",
+      ];
+
+      let currentQuoteIndex = 0;
+      function rotateQuotes() {
+        const hintQuoteElement = document.getElementById("romanticQuoteHint");
+        const buttonQuoteElement = document.getElementById("buttonQuote");
+
+        // Rotate hint quote
+        if (hintQuoteElement) {
+          hintQuoteElement.style.opacity = "0";
+          setTimeout(() => {
+            currentQuoteIndex = (currentQuoteIndex + 1) % romanticQuotes.length;
+            hintQuoteElement.textContent = romanticQuotes[currentQuoteIndex];
+            hintQuoteElement.style.opacity = "1";
+          }, 500);
+        }
+
+        // Rotate button quote
+        if (buttonQuoteElement) {
+          buttonQuoteElement.style.transition = "opacity 0.5s ease";
+          buttonQuoteElement.style.opacity = "0";
+
+          setTimeout(() => {
+            const buttonIndex = currentQuoteIndex % buttonQuotes.length;
+            buttonQuoteElement.textContent = buttonQuotes[buttonIndex];
+            buttonQuoteElement.style.opacity = "1";
+          }, 500);
+        }
+      }
+
       // Rotating Romantic Quotes
       const romanticQuotes = [
         '"Every love story is beautiful, but ours is my favorite." 💕',
@@ -3747,20 +3809,6 @@
         '"You are my happy place." 🌸',
         '"I loved you yesterday, I love you still, I always have, I always will." 💓',
       ];
-
-      let currentQuoteIndex = 0;
-      function rotateQuotes() {
-        const quoteElement = document.getElementById("romanticQuote");
-        if (!quoteElement) return;
-
-        quoteElement.style.opacity = "0";
-
-        setTimeout(() => {
-          currentQuoteIndex = (currentQuoteIndex + 1) % romanticQuotes.length;
-          quoteElement.textContent = romanticQuotes[currentQuoteIndex];
-          quoteElement.style.opacity = "1";
-        }, 500);
-      }
 
       // Play soft twinkle sound on input focus
       function playTwinkleSound() {
