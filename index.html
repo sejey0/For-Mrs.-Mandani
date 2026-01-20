@@ -1246,6 +1246,593 @@
         }
       }
 
+      /* ========== NEW ENHANCED INTRO SECURITY FEATURES ========== */
+
+      /* Animated Hearts Border */
+      .hearts-border {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: 3;
+        overflow: hidden;
+      }
+
+      .border-heart {
+        position: absolute;
+        font-size: 16px;
+        animation: moveBorderHeart 15s linear infinite;
+        opacity: 0.7;
+      }
+
+      @keyframes moveBorderHeart {
+        0% {
+          offset-distance: 0%;
+        }
+        100% {
+          offset-distance: 100%;
+        }
+      }
+
+      .border-heart:nth-child(1) {
+        offset-path: path("M 0,0 L 700,0");
+        animation-delay: 0s;
+        top: 0;
+      }
+      .border-heart:nth-child(2) {
+        offset-path: path("M 700,0 L 700,550");
+        animation-delay: -2s;
+        right: 0;
+      }
+      .border-heart:nth-child(3) {
+        offset-path: path("M 700,550 L 0,550");
+        animation-delay: -4s;
+        bottom: 0;
+      }
+      .border-heart:nth-child(4) {
+        offset-path: path("M 0,550 L 0,0");
+        animation-delay: -6s;
+        left: 0;
+      }
+      .border-heart:nth-child(5) {
+        offset-path: path("M 0,0 L 700,0");
+        animation-delay: -8s;
+        top: 0;
+      }
+      .border-heart:nth-child(6) {
+        offset-path: path("M 700,0 L 700,550");
+        animation-delay: -10s;
+        right: 0;
+      }
+
+      /* Pulsing Gradient Overlay */
+      .gradient-pulse-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(236, 72, 153, 0.1) 0%,
+          transparent 70%
+        );
+        animation: gradientPulse 4s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      @keyframes gradientPulse {
+        0%,
+        100% {
+          opacity: 0.3;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.6;
+          transform: scale(1.1);
+        }
+      }
+
+      /* Aurora Effect */
+      .aurora-effect {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          45deg,
+          rgba(236, 72, 153, 0.1) 0%,
+          rgba(139, 92, 246, 0.1) 25%,
+          rgba(236, 72, 153, 0.05) 50%,
+          rgba(139, 92, 246, 0.1) 75%,
+          rgba(236, 72, 153, 0.1) 100%
+        );
+        background-size: 400% 400%;
+        animation: auroraMove 10s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      @keyframes auroraMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Romantic Floating Emojis */
+      .floating-emoji {
+        position: absolute;
+        font-size: 24px;
+        animation: floatEmoji 8s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 2;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+      }
+
+      @keyframes floatEmoji {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 0.6;
+        }
+        25% {
+          transform: translateY(-20px) rotate(10deg);
+          opacity: 0.9;
+        }
+        50% {
+          transform: translateY(-10px) rotate(-5deg);
+          opacity: 0.7;
+        }
+        75% {
+          transform: translateY(-25px) rotate(5deg);
+          opacity: 0.8;
+        }
+      }
+
+      .floating-emoji:nth-child(1) {
+        left: 5%;
+        top: 15%;
+        animation-delay: 0s;
+      }
+      .floating-emoji:nth-child(2) {
+        right: 8%;
+        top: 20%;
+        animation-delay: 1s;
+      }
+      .floating-emoji:nth-child(3) {
+        left: 12%;
+        bottom: 30%;
+        animation-delay: 2s;
+      }
+      .floating-emoji:nth-child(4) {
+        right: 15%;
+        bottom: 35%;
+        animation-delay: 3s;
+      }
+      .floating-emoji:nth-child(5) {
+        left: 3%;
+        top: 50%;
+        animation-delay: 4s;
+      }
+      .floating-emoji:nth-child(6) {
+        right: 5%;
+        top: 45%;
+        animation-delay: 5s;
+      }
+
+      /* Love Meter Progress */
+      .love-meter {
+        position: absolute;
+        bottom: 12%;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        z-index: 3;
+      }
+
+      .love-meter-heart {
+        font-size: 18px;
+        opacity: 0.3;
+        transition: all 0.3s ease;
+        animation: meterPulse 2s ease-in-out infinite;
+      }
+
+      .love-meter-heart.filled {
+        opacity: 1;
+        filter: drop-shadow(0 0 8px rgba(236, 72, 153, 0.8));
+      }
+
+      .love-meter-heart:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .love-meter-heart:nth-child(2) {
+        animation-delay: 0.1s;
+      }
+      .love-meter-heart:nth-child(3) {
+        animation-delay: 0.2s;
+      }
+      .love-meter-heart:nth-child(4) {
+        animation-delay: 0.3s;
+      }
+      .love-meter-heart:nth-child(5) {
+        animation-delay: 0.4s;
+      }
+      .love-meter-heart:nth-child(6) {
+        animation-delay: 0.5s;
+      }
+
+      @keyframes meterPulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.15);
+        }
+      }
+
+      /* Enhanced Lock Icon with Keyhole */
+      .lock-icon-enhanced {
+        position: relative;
+        font-size: 70px;
+        margin-bottom: 15px;
+        animation: lockWiggle 3s ease-in-out infinite;
+        filter: drop-shadow(0 5px 20px rgba(255, 255, 255, 0.3));
+      }
+
+      .keyhole-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 20px;
+        height: 30px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.8) 0%,
+          rgba(236, 72, 153, 0.5) 50%,
+          transparent 70%
+        );
+        border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
+        animation: keyholeGlow 2s ease-in-out infinite;
+      }
+
+      @keyframes lockWiggle {
+        0%,
+        100% {
+          transform: rotate(0deg);
+        }
+        25% {
+          transform: rotate(-3deg);
+        }
+        75% {
+          transform: rotate(3deg);
+        }
+      }
+
+      @keyframes keyholeGlow {
+        0%,
+        100% {
+          opacity: 0.5;
+          box-shadow: 0 0 10px rgba(236, 72, 153, 0.5);
+        }
+        50% {
+          opacity: 1;
+          box-shadow: 0 0 25px rgba(236, 72, 153, 0.8);
+        }
+      }
+
+      /* Sparkle Trail Effect */
+      .sparkle-trail {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 10;
+      }
+
+      .sparkle-dot {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: white;
+        border-radius: 50%;
+        pointer-events: none;
+        animation: sparkleFade 1s ease-out forwards;
+        box-shadow:
+          0 0 10px rgba(236, 72, 153, 0.8),
+          0 0 20px rgba(255, 255, 255, 0.5);
+      }
+
+      @keyframes sparkleFade {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(0);
+          opacity: 0;
+        }
+      }
+
+      /* Ripple Effect for Button */
+      .unlock-btn {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.4);
+        transform: scale(0);
+        animation: rippleEffect 0.6s ease-out;
+        pointer-events: none;
+      }
+
+      @keyframes rippleEffect {
+        to {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+
+      /* Enhanced Input Glow Effects */
+      .passcode-input input {
+        position: relative;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .passcode-input input:focus {
+        border-color: #f9a8d4;
+        transform: scale(1.08) translateY(-3px);
+        background: rgba(236, 72, 153, 0.1);
+        box-shadow:
+          0 0 20px rgba(236, 72, 153, 0.4),
+          0 0 40px rgba(236, 72, 153, 0.2),
+          inset 0 0 10px rgba(236, 72, 153, 0.1);
+      }
+
+      .passcode-input input.filled {
+        background: rgba(236, 72, 153, 0.15);
+        border-color: #ec4899;
+        animation: inputFillPop 0.3s ease-out;
+      }
+
+      @keyframes inputFillPop {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.15);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      /* Typewriter Hint Text */
+      .intro-hint-wrapper {
+        position: relative;
+        display: inline-block;
+      }
+
+      .typewriter-cursor {
+        display: inline-block;
+        width: 2px;
+        height: 1em;
+        background: white;
+        margin-left: 2px;
+        animation: cursorBlink 1s step-end infinite;
+      }
+
+      @keyframes cursorBlink {
+        0%,
+        50% {
+          opacity: 1;
+        }
+        51%,
+        100% {
+          opacity: 0;
+        }
+      }
+
+      /* Spinning Hearts Ring */
+      .spinning-hearts-ring {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        height: 400px;
+        animation: spinRing 30s linear infinite;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .ring-heart {
+        position: absolute;
+        font-size: 14px;
+        opacity: 0.3;
+      }
+
+      @keyframes spinRing {
+        from {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        to {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+
+      /* Romantic Quote Banner */
+      .romantic-quote-banner {
+        position: absolute;
+        top: 48%;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: "Lora", serif;
+        font-style: italic;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        text-align: center;
+        max-width: 300px;
+        animation: quoteFade 8s ease-in-out infinite;
+        z-index: 2;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+      }
+
+      @keyframes quoteFade {
+        0%,
+        100% {
+          opacity: 0;
+          transform: translateX(-50%) translateY(10px);
+        }
+        15%,
+        85% {
+          opacity: 0.8;
+          transform: translateX(-50%) translateY(0);
+        }
+      }
+
+      /* Glowing Border Animation */
+      .lock-screen::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 25px;
+        padding: 3px;
+        background: linear-gradient(
+          45deg,
+          #ec4899,
+          #8b5cf6,
+          #f472b6,
+          #a78bfa,
+          #ec4899
+        );
+        background-size: 400% 400%;
+        animation: borderGlow 6s ease-in-out infinite;
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.6;
+      }
+
+      @keyframes borderGlow {
+        0% {
+          background-position: 0% 50%;
+          opacity: 0.4;
+        }
+        50% {
+          background-position: 100% 50%;
+          opacity: 0.8;
+        }
+        100% {
+          background-position: 0% 50%;
+          opacity: 0.4;
+        }
+      }
+
+      /* Magical Dust Particles */
+      .magic-dust {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 2;
+        overflow: hidden;
+      }
+
+      .dust-particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: linear-gradient(135deg, #fff, #f9a8d4);
+        border-radius: 50%;
+        animation: dustFloat 6s ease-in-out infinite;
+        box-shadow: 0 0 6px rgba(249, 168, 212, 0.8);
+      }
+
+      @keyframes dustFloat {
+        0%,
+        100% {
+          transform: translateY(0) translateX(0) scale(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        90% {
+          opacity: 0.8;
+        }
+        100% {
+          transform: translateY(-100px) translateX(30px) scale(0.5);
+          opacity: 0;
+        }
+      }
+
+      .dust-particle:nth-child(1) {
+        left: 10%;
+        top: 80%;
+        animation-delay: 0s;
+      }
+      .dust-particle:nth-child(2) {
+        left: 25%;
+        top: 70%;
+        animation-delay: 0.8s;
+      }
+      .dust-particle:nth-child(3) {
+        left: 40%;
+        top: 85%;
+        animation-delay: 1.6s;
+      }
+      .dust-particle:nth-child(4) {
+        left: 55%;
+        top: 75%;
+        animation-delay: 2.4s;
+      }
+      .dust-particle:nth-child(5) {
+        left: 70%;
+        top: 80%;
+        animation-delay: 3.2s;
+      }
+      .dust-particle:nth-child(6) {
+        left: 85%;
+        top: 70%;
+        animation-delay: 4s;
+      }
+      .dust-particle:nth-child(7) {
+        left: 15%;
+        top: 65%;
+        animation-delay: 4.8s;
+      }
+      .dust-particle:nth-child(8) {
+        left: 60%;
+        top: 90%;
+        animation-delay: 5.6s;
+      }
+
+      /* ========== END NEW FEATURES ========== */
+
       .lock-title {
         font-family: "Dancing Script", cursive;
         color: #ffffff;
@@ -2303,6 +2890,53 @@
   <body>
     <div class="container">
       <div class="lock-screen" id="lockScreen">
+        <!-- Aurora Effect -->
+        <div class="aurora-effect"></div>
+
+        <!-- Gradient Pulse Overlay -->
+        <div class="gradient-pulse-overlay"></div>
+
+        <!-- Magical Dust Particles -->
+        <div class="magic-dust">
+          <div class="dust-particle"></div>
+          <div class="dust-particle"></div>
+          <div class="dust-particle"></div>
+          <div class="dust-particle"></div>
+          <div class="dust-particle"></div>
+          <div class="dust-particle"></div>
+          <div class="dust-particle"></div>
+          <div class="dust-particle"></div>
+        </div>
+
+        <!-- Hearts Border -->
+        <div class="hearts-border">
+          <span class="border-heart">💕</span>
+          <span class="border-heart">💗</span>
+          <span class="border-heart">💖</span>
+          <span class="border-heart">💕</span>
+          <span class="border-heart">💗</span>
+          <span class="border-heart">💖</span>
+        </div>
+
+        <!-- Floating Romantic Emojis -->
+        <div class="floating-emoji">💝</div>
+        <div class="floating-emoji">✨</div>
+        <div class="floating-emoji">🌹</div>
+        <div class="floating-emoji">💫</div>
+        <div class="floating-emoji">🦋</div>
+        <div class="floating-emoji">🌸</div>
+
+        <!-- Spinning Hearts Ring -->
+        <div class="spinning-hearts-ring" id="spinningRing"></div>
+
+        <!-- Romantic Quote Banner -->
+        <div class="romantic-quote-banner" id="romanticQuote">
+          "Every love story is beautiful, but ours is my favorite." 💕
+        </div>
+
+        <!-- Sparkle Trail Container -->
+        <div class="sparkle-trail" id="sparkleTrail"></div>
+
         <!-- Glowing Orbs -->
         <div class="glow-orb glow-orb-1"></div>
         <div class="glow-orb glow-orb-2"></div>
@@ -2406,6 +3040,11 @@
         </div>
 
         <div class="lock-content">
+          <!-- Enhanced Lock Icon -->
+          <div class="lock-icon-enhanced">
+            <div class="keyhole-glow"></div>
+          </div>
+
           <div class="passcode-input">
             <input type="password" maxlength="1" id="digit1" placeholder="•" />
             <input type="password" maxlength="1" id="digit2" placeholder="•" />
@@ -2414,8 +3053,30 @@
             <input type="password" maxlength="1" id="digit5" placeholder="•" />
             <input type="password" maxlength="1" id="digit6" placeholder="•" />
           </div>
-          <button class="unlock-btn" onclick="unlock()">Unlock</button>
-          <div class="intro-hint">🔒 Enter our special date</div>
+
+          <!-- Love Meter -->
+          <div class="love-meter" id="loveMeter">
+            <span class="love-meter-heart" data-index="1">💗</span>
+            <span class="love-meter-heart" data-index="2">💗</span>
+            <span class="love-meter-heart" data-index="3">💗</span>
+            <span class="love-meter-heart" data-index="4">💗</span>
+            <span class="love-meter-heart" data-index="5">💗</span>
+            <span class="love-meter-heart" data-index="6">💗</span>
+          </div>
+
+          <button
+            class="unlock-btn"
+            onclick="unlock()"
+            onmousedown="createRipple(event)"
+          >
+            ✨ Unlock Our Love ✨
+          </button>
+          <div class="intro-hint-wrapper">
+            <div class="intro-hint" id="typewriterHint">
+              🔒 Enter our special date
+            </div>
+            <span class="typewriter-cursor"></span>
+          </div>
           <div class="error-msg" id="errorMsg"></div>
         </div>
       </div>
@@ -2970,6 +3631,174 @@
           }
         });
       });
+
+      // ========== NEW ENHANCED FEATURES SCRIPTS ==========
+
+      // Create Spinning Hearts Ring
+      function createSpinningHeartsRing() {
+        const ring = document.getElementById("spinningRing");
+        if (!ring) return;
+        const hearts = ["💕", "💗", "💖", "💝", "❤️", "💓"];
+        const totalHearts = 24;
+
+        for (let i = 0; i < totalHearts; i++) {
+          const heart = document.createElement("span");
+          heart.className = "ring-heart";
+          heart.textContent = hearts[i % hearts.length];
+
+          const angle = (360 / totalHearts) * i;
+          const radius = 180;
+          const x = Math.cos((angle * Math.PI) / 180) * radius;
+          const y = Math.sin((angle * Math.PI) / 180) * radius;
+
+          heart.style.left = `calc(50% + ${x}px)`;
+          heart.style.top = `calc(50% + ${y}px)`;
+          heart.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+          heart.style.animationDelay = `${i * 0.1}s`;
+
+          ring.appendChild(heart);
+        }
+      }
+
+      // Sparkle Trail Effect
+      function initSparkleTrail() {
+        const lockScreen = document.getElementById("lockScreen");
+        const sparkleContainer = document.getElementById("sparkleTrail");
+        if (!lockScreen || !sparkleContainer) return;
+
+        lockScreen.addEventListener("mousemove", (e) => {
+          const rect = lockScreen.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          if (Math.random() > 0.7) {
+            createSparkle(sparkleContainer, x, y);
+          }
+        });
+      }
+
+      function createSparkle(container, x, y) {
+        const sparkle = document.createElement("div");
+        sparkle.className = "sparkle-dot";
+        sparkle.style.left = x + "px";
+        sparkle.style.top = y + "px";
+
+        const colors = ["#fff", "#f9a8d4", "#ec4899", "#c4b5fd"];
+        sparkle.style.background =
+          colors[Math.floor(Math.random() * colors.length)];
+        sparkle.style.width = Math.random() * 6 + 4 + "px";
+        sparkle.style.height = sparkle.style.width;
+
+        container.appendChild(sparkle);
+
+        setTimeout(() => sparkle.remove(), 1000);
+      }
+
+      // Ripple Effect for Button
+      function createRipple(event) {
+        const button = event.currentTarget;
+        const ripple = document.createElement("span");
+        ripple.className = "ripple";
+
+        const rect = button.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+
+        ripple.style.width = ripple.style.height = size + "px";
+        ripple.style.left = event.clientX - rect.left - size / 2 + "px";
+        ripple.style.top = event.clientY - rect.top - size / 2 + "px";
+
+        button.appendChild(ripple);
+
+        setTimeout(() => ripple.remove(), 600);
+      }
+
+      // Love Meter - Updates based on filled passcode inputs
+      function updateLoveMeter() {
+        const inputs = document.querySelectorAll(".passcode-input input");
+        const hearts = document.querySelectorAll(".love-meter-heart");
+
+        let filledCount = 0;
+        inputs.forEach((input) => {
+          if (input.value.length > 0) filledCount++;
+        });
+
+        hearts.forEach((heart, index) => {
+          if (index < filledCount) {
+            heart.classList.add("filled");
+          } else {
+            heart.classList.remove("filled");
+          }
+        });
+      }
+
+      // Add love meter update to input events
+      inputs.forEach((input) => {
+        input.addEventListener("input", updateLoveMeter);
+      });
+
+      // Rotating Romantic Quotes
+      const romanticQuotes = [
+        '"Every love story is beautiful, but ours is my favorite." 💕',
+        '"You are my today and all of my tomorrows." ✨',
+        '"In your arms is where I belong." 💖',
+        '"You are the reason I believe in love." 💗',
+        '"Forever is not long enough with you." 💝',
+        '"My heart is and always will be yours." ❤️',
+        '"You are my happy place." 🌸',
+        '"I loved you yesterday, I love you still, I always have, I always will." 💓',
+      ];
+
+      let currentQuoteIndex = 0;
+      function rotateQuotes() {
+        const quoteElement = document.getElementById("romanticQuote");
+        if (!quoteElement) return;
+
+        quoteElement.style.opacity = "0";
+
+        setTimeout(() => {
+          currentQuoteIndex = (currentQuoteIndex + 1) % romanticQuotes.length;
+          quoteElement.textContent = romanticQuotes[currentQuoteIndex];
+          quoteElement.style.opacity = "1";
+        }, 500);
+      }
+
+      // Play soft twinkle sound on input focus
+      function playTwinkleSound() {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+
+        oscillator.frequency.setValueAtTime(1200, audioContext.currentTime);
+        oscillator.type = "sine";
+        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(
+          0.01,
+          audioContext.currentTime + 0.1,
+        );
+
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.1);
+      }
+
+      // Add focus sound to inputs
+      inputs.forEach((input) => {
+        input.addEventListener("focus", () => {
+          playTwinkleSound();
+        });
+      });
+
+      // Initialize all new features
+      document.addEventListener("DOMContentLoaded", () => {
+        createSpinningHeartsRing();
+        initSparkleTrail();
+
+        // Start quote rotation
+        setInterval(rotateQuotes, 8000);
+      });
+
+      // ========== END NEW FEATURES SCRIPTS ==========
     </script>
   </body>
 </html>
